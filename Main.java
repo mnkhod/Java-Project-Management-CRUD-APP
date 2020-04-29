@@ -55,11 +55,30 @@ public class Main{
       try{
 	log("Now Initializing OrganizeCSV");
 
-	FileInputStream fstream = new FileInputStream(file);
-	BufferedReader reader = new BufferedReader(new InputStreamReader(fstream));
+	// GET LINE BY LINE USING INPUT STREAM
+	InputStream stream = new FileInputStream(file); 
 	String line;
+	int data; 
+	String l = ""; 
+	ArrayList<String> line_list = new ArrayList<String>();
 
-	while ((line = reader.readLine()) != null ) {
+	do {
+	   data = stream.read(); 
+
+	   if ((char)data == '\n'){
+	      line_list.add(l);
+	      l = "";
+	      continue;
+	   }
+
+	   l += Character.toString((char)data);
+
+	} while (data != -1);
+
+	stream.close();
+      
+	for(int x=0; x< line_list.size(); x++){
+	  line = line_list.get(x);
 	  log("\nLine : " + line);
 	  String[] items = line.split(",");
 
@@ -180,7 +199,6 @@ public class Main{
 	}
 
 	log("Validation Was Succesfull :D , Added Everything To Product List");
-	fstream.close();
 
       }catch(Exception ela){
 
