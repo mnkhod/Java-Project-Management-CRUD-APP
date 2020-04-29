@@ -65,7 +65,24 @@ public class Main{
 
 	  String first_letter = items[0].substring(0,1);
 	  Scanner input = new Scanner(System.in);
-	  String[] i_marks = Arrays.copyOfRange(items,2,items.length);
+
+	  int count = items.length-2;
+
+	  String[] i_marks = new String[count];
+	  String[] i_mark_withNoTotal = new String[count-1];
+
+	  int p = 0;
+	  for(int j = 2; j < (items.length-1); j++){
+	    i_marks[p] = items[j]; 
+	    p++;
+	  }
+
+	  p = 0;
+	  for(int o = 0; o < (i_marks.length-1); o++){
+	    i_mark_withNoTotal[p] = i_marks[o]; 
+	    p++;
+	  }
+
 
 	  // Check if its not first column then continue
 	  if(first_letter.equals("P") || first_letter.equals("F") ){
@@ -114,7 +131,7 @@ public class Main{
 		log("Refactoring Right Now");
 		log("\n");
 		log("Changing Grade of " + i_name +" which has a total of " + total + " : " 
-		    + String.join("," , Arrays.copyOfRange(i_marks,0,i_marks.length-1) ));
+		    + String.join("," , i_mark_withNoTotal ));
 
 		total = 0;
 		check_total = 0;
@@ -280,6 +297,14 @@ public class Main{
 	  int total = 0;
 	  boolean isHundred = true;
 	  
+
+	  String[] i_mark_withNoTotal = new String[marks.length-1];
+
+	  int r = 0;
+	  for(int o = 0; o < (marks.length-1); o++){
+	    i_mark_withNoTotal[r] = marks[o]; 
+	    r++;
+	  }
 	  // Found now editing the marks
 
 	  log("Refactoring Right Now");
@@ -291,7 +316,7 @@ public class Main{
 	      log("Total Mark not 100! , right now the total is " + total);
 	    }
 
-	    log("Changing Grade of " + p.name + " : " + String.join("," , Arrays.copyOfRange(marks,0,marks.length-1) ));
+	    log("Changing Grade of " + p.name + " : " + String.join("," , i_mark_withNoTotal ));
 
 	    total = 0;
 
