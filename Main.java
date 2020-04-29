@@ -161,7 +161,9 @@ public class Main{
       }
       log("\n");
 
-      for(Project p : project_items){
+      for(int x=0; x< project_items.size(); x++){
+	Project p = project_items.get(x);
+
 	System.out.print("| " + p.id + " |\t");
 	System.out.print("| " + p.name + " |\t");
 
@@ -230,7 +232,9 @@ public class Main{
       System.out.print("\nPlease Enter Student Id : ");
       answer = input.nextLine();
 
-      for(Project p : project_items){
+      for(int x=0; x< project_items.size(); x++){
+	Project p = project_items.get(x);
+
 	if(answer.equals(p.id)){
 	  found = true;
 
@@ -272,6 +276,8 @@ public class Main{
 
 	  }while(total != 100);
 
+	  // Finished This Current Project Validation Hence Now Total is 100
+	  marks[marks.length-1] = "100";
 	  log("Finished Refactoring Project Marks");
 
 	  break;
@@ -298,7 +304,9 @@ public class Main{
 	  }
 	}
 
-	for(Project p : project_items){
+	for(int x=0; x< project_items.size(); x++){
+	  Project p = project_items.get(x);
+
 	  writer.write(p.id + ",");
 	  writer.write(p.name + ",");
 
@@ -336,7 +344,9 @@ public class Main{
       System.out.print("\nPlease Enter Student Id : ");
       answer = input.nextLine();
       
-      for(Project p : project_items){
+      for(int x=0; x< project_items.size(); x++){
+	Project p = project_items.get(x);
+
 	if(answer.equals(p.id)){
 	  found = true;
 
