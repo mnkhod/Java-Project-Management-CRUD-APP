@@ -16,9 +16,6 @@ public class Main{
       System.out.print("Project Mark File Name : ");
       filename = scan.nextLine();
       file = new File(filename);
-
-      // Clear Console
-      clearScreen();
     }while(!filename.contains(".csv") || !file.exists());
 
 
@@ -38,35 +35,13 @@ public class Main{
     System.out.println(data);
   }
 
-  static void clearScreen()
-  {
-      try
-      {
-	  final String os = System.getProperty("os.name");
-
-	  if (os.contains("Windows"))
-	  {
-	      Runtime.getRuntime().exec("cls");
-	  }
-	  else
-	  {
-	      Runtime.getRuntime().exec("clear");
-	  }
-      }
-      catch (final Exception e)
-      {
-	  //  Handle any exceptions.
-      }
-  }
-
-
 
   // Project Classes
   public static class ProjectManager {
-    private List<Project> project_items; 
-    private String[] columns;
-    private String filename;
-    private int mark_size;
+    public List<Project> project_items; 
+    public String[] columns;
+    public String filename;
+    public int mark_size;
 
     public ProjectManager(File projectFile,String f_name){
       project_items = new ArrayList<Project>();
@@ -187,10 +162,10 @@ public class Main{
       log("\n");
 
       for(Project p : project_items){
-	System.out.print("| " + p.getId() + " |\t");
-	System.out.print("| " + p.getName() + " |\t");
+	System.out.print("| " + p.id + " |\t");
+	System.out.print("| " + p.name + " |\t");
 
-	dump_arr = p.getMarks();
+	dump_arr = p.marks;
 
 	for(int i = 0; i < dump_arr.length; i++){
 	  System.out.print("| " + dump_arr[i] + " |\t");
@@ -256,10 +231,10 @@ public class Main{
       answer = input.nextLine();
 
       for(Project p : project_items){
-	if(answer.equals(p.getId())){
+	if(answer.equals(p.id)){
 	  found = true;
 
-	  String[] marks = p.getMarks();
+	  String[] marks = p.marks;
 	  int total = 0;
 	  boolean isHundred = true;
 	  
@@ -274,8 +249,7 @@ public class Main{
 	      log("Total Mark not 100! , right now the total is " + total);
 	    }
 
-	    log("Changing Grade of " + p.getName() +" : " 
-		+ String.join("," , Arrays.copyOfRange(marks,0,marks.length-1) ));
+	    log("Changing Grade of " + p.name + " : " + String.join("," , Arrays.copyOfRange(marks,0,marks.length-1) ));
 
 	    total = 0;
 
@@ -325,10 +299,10 @@ public class Main{
 	}
 
 	for(Project p : project_items){
-	  writer.write(p.getId() + ",");
-	  writer.write(p.getName() + ",");
+	  writer.write(p.id + ",");
+	  writer.write(p.name + ",");
 
-	  dump_arr = p.getMarks();
+	  dump_arr = p.marks;
 
 	  for(int i = 0; i < dump_arr.length; i++){
 
@@ -363,7 +337,7 @@ public class Main{
       answer = input.nextLine();
       
       for(Project p : project_items){
-	if(answer.equals(p.getId())){
+	if(answer.equals(p.id)){
 	  found = true;
 
 	  project_items.remove(counter);
@@ -433,44 +407,17 @@ public class Main{
 
 
 
-
+  // Template Class For Every Project So We can Access and Group Data
   public static class Project {
-    private String _name;
-    private String _id;
-    private String[] _marks;
+    public String name;
+    public String id;
+    public String[] marks;
 
-    public Project(String name,String id, String[] marks){
-      _name = name;
-      _id = id;
-      _marks = marks;
+    public Project(String n,String i, String[] m){
+      name = n;
+      id = i;
+      marks = m;
     } 
-
-    // Getter and Setters
-
-    public String getName() {
-      return _name;
-    }
-
-    public void setName(String n) {
-      _name = n;
-    }
-
-    public String getId() {
-      return _id;
-    }
-
-    public void setId(String i) {
-      _id = i;
-    }
-
-    public String[] getMarks() {
-      return _marks;
-    }
-
-    public void setMarks(String[] a) {
-      _marks = a;
-    }
-
   }
 
 
