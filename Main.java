@@ -7,14 +7,14 @@ public class Main{
   public static void main(String[] args){
 
     // Initializing Variables 
-    Scanner scan = new Scanner(System.in);
     String filename = "";
     File file;
 
     // Get File Name and Check If The File Exists
     do{
       System.out.print("Project Mark File Name : ");
-      filename = scan.nextLine();
+      Scanner check = new Scanner(System.in);
+      filename = check.nextLine();
       file = new File(filename);
     }while(!filename.contains(".csv") || !file.exists());
 
@@ -82,8 +82,18 @@ public class Main{
 	      if(i_marks[i].equals(null) || i_marks[i].equals("")){
 		log("\n");
 
-		System.out.print("Item is Empty So Please Fill In A Number : ");
-		i_marks[i] = Integer.toString(input.nextInt());
+
+		while(true){
+		  try{
+		    Scanner check = new Scanner(System.in);
+		    System.out.print("Item is Empty So Please Fill In A Number : ");
+		    i_marks[i] = Integer.toString(check.nextInt());
+		    break;
+		  }catch(Exception e){
+		    log("It has to be a number!");
+		  }
+		}
+
 	      }
 
 	      total += Integer.parseInt(i_marks[i]); 
@@ -110,8 +120,19 @@ public class Main{
 		check_total = 0;
 
 		for(int i=0; i < i_marks.length-1; i++){
-		  System.out.print("Grade is " + i_marks[i] + " would u like to change? 'n' for no / number for change : ");
-		  String answer = input.nextLine();
+		  String answer = null;
+
+		  while(true){
+		    try{
+		      System.out.print("Grade is " + i_marks[i] + " would u like to change? 'n' for no / number for change : ");
+		      Scanner check = new Scanner(System.in);
+		      answer = check.nextLine();
+		      break;
+		    }catch(Exception e){
+
+		    }
+		  }
+
 
 		  if(answer.equals("n")){
 		    continue;
@@ -196,8 +217,18 @@ public class Main{
       log("\n");
       
       while(answer <= 0 || answer >= 6){
-	  System.out.print("Please Enter Menu Number : ");
-	  answer = input.nextInt();
+
+	  while(true){
+	    try{
+	      Scanner check = new Scanner(System.in);
+	      System.out.print("Please Enter Menu Number : ");
+	      answer = check.nextInt();
+	      break;
+	    }catch(Exception e){
+	      log("It has to be a number!");
+	    }
+	  }
+
       }
 
       switch(answer){
@@ -229,8 +260,15 @@ public class Main{
       String answer;
       boolean found = false;
 
-      System.out.print("\nPlease Enter Student Id : ");
-      answer = input.nextLine();
+      while(true){
+	try{
+	  Scanner check = new Scanner(System.in);
+	  System.out.print("\nPlease Enter Student Id : ");
+	  answer = check.nextLine();
+	  break;
+	}catch(Exception e){
+	}
+      }
 
       for(int x=0; x< project_items.size(); x++){
 	Project p = project_items.get(x);
@@ -258,8 +296,18 @@ public class Main{
 	    total = 0;
 
 	    for(int i=0; i < marks.length-1; i++){
-	      System.out.print("Grade is " + marks[i] + " would u like to change? 'n' for no / number for change : ");
-	      answer = input.nextLine();
+
+	      while(true){
+		try{
+		  Scanner check = new Scanner(System.in);
+		  System.out.print("Grade is " + marks[i] + " would u like to change? 'n' for no / number for change : ");
+		  answer = check.nextLine();
+		  break;
+		}catch(Exception e){
+
+		}
+	      }
+
 
 	      if(answer.equals("n")){
 		continue;
@@ -341,8 +389,17 @@ public class Main{
       boolean found = false;
       int counter = 0;
 
-      System.out.print("\nPlease Enter Student Id : ");
-      answer = input.nextLine();
+      while(true){
+
+	try{
+	  System.out.print("\nPlease Enter Student Id : ");
+	  Scanner check = new Scanner(System.in);
+	  answer = check.nextLine();
+	  break;
+	}catch(Exception e){
+
+	}
+      }
       
       for(int x=0; x< project_items.size(); x++){
 	Project p = project_items.get(x);
@@ -377,8 +434,17 @@ public class Main{
 
       do{
 	log("ID MUST START WITH 'F' OR 'P' AND FOLLOWED BY 6 OR 7 DIGITS");
-	System.out.print("\nPlease Enter New Student Id : ");
-	new_id = input.nextLine();
+
+	while(true){
+	  try{
+	    System.out.print("\nPlease Enter New Student Id : ");
+	    Scanner check = new Scanner(System.in);
+	    new_id = check.nextLine();
+	    break;
+	  }catch(Exception e){
+
+	  }
+	}
 
 	if(new_id.substring(0,1).equals("P") || new_id.substring(0,1).equals("F")){
 	  if(new_id.length() == 8 || new_id.length() == 7 ){
@@ -389,13 +455,32 @@ public class Main{
       }while(true);
 
 
-      System.out.print("\nPlease Enter New Student Name : ");
-      new_name = input.nextLine();
+	while(true){
+	  try{
+	    System.out.print("\nPlease Enter New Student Name : ");
+	    Scanner check = new Scanner(System.in);
+	    new_name = check.nextLine();
+	    break;
+	  }catch(Exception e){
+
+	  }
+	}
+
       
+
       
       for(int i = 0; i < mark_size-1; i++){
-	System.out.print("\nPlease Enter New Mark " + (i+1) +" of "+(mark_size-1)+" : ");
-	new_marks[i] = Integer.toString(input.nextInt());
+	while(true){
+	  try{
+	    System.out.print("\nPlease Enter New Mark " + (i+1) +" of "+(mark_size-1)+" : ");
+	    Scanner check = new Scanner(System.in);
+	    new_marks[i] = Integer.toString(check.nextInt());
+	    break;
+	  }catch(Exception e){
+	    log("It Has To Be A Number!");
+	  }
+	}
+
 	total += Integer.parseInt(new_marks[i]);
       }
 
